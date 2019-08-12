@@ -2,6 +2,7 @@
 
 import time
 import os
+import sys
 start_time = time.time()
 
 from selenium import webdriver
@@ -12,8 +13,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 
-NUMBER_OF_PAGES=6
-year='2019'
+NUMBER_OF_PAGES=9
+year=str(sys.argv[1])
 
 def get_stats():
 
