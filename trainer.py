@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#/usr/bin/env python
 
 import pandas as pd
 import tensorflow as tf
@@ -37,17 +37,18 @@ print(len(train_dataset.keys()))
 def build_model():
     model = keras.Sequential([
     layers.Dense(43, input_shape=[len(train_dataset.keys())],activation='sigmoid'),
-    layers.Dense(1849,activation='sigmoid'),
+    layers.Dense(1000,activation='sigmoid'),
+    layers.Dense(1000,activation='sigmoid'),
     layers.Dense(1,activation='sigmoid'),
   ])
-    model.compile(optimizer='rmsprop',
+    model.compile(optimizer='adam',
               loss='binary_crossentropy',
               metrics=['accuracy'])
     return model
 
 model = build_model()
 
-early_stop = keras.callbacks.EarlyStopping(monitor='val_acc', patience=25)
+early_stop = keras.callbacks.EarlyStopping(monitor='val_acc', patience=40)
 
 import os
 checkpoint_path = "training_2/cp.ckpt"
