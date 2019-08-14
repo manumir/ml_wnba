@@ -1,27 +1,6 @@
-#import tensorflow as tf
 import pandas as pd
+from sklearn.linear_model import LinearRegression
 import joblib
-data=pd.read_csv('data.csv')
-
-c2_avg=['PTS', 'FGM', 'FGA','FG%', '3PM', '3PA', '3P%',
-        'FTM', 'FTA', 'FT%', 'OREB', 'DREB', 'REB',
-        'AST', 'TOV', 'STL', 'BLK', 'PF', '+/-','winrate 30','winrate 6']
-
-home=data.loc[data['Team']=='SEA'][:1]
-
-away=data.loc[data['Team']=='LAS'][:1]
-
-home=home.reset_index(drop=True)
-away=away.reset_index(drop=True)
-
-home=home[c2_avg]
-away=away[c2_avg]
-
-b=home.join(away,lsuffix='_left',rsuffix='_right')
-
-b['Location']=0
-
-print(b)
 
 data=pd.read_csv('train.csv')
 a=data.dropna()
@@ -41,10 +20,16 @@ test_labels = test_dataset.pop('Result')
 
 def norm(x):
   return (x - train_stats['mean']) / train_stats['std']
-b= norm(b)
+normed_train_data = norm(train_dataset)
+normed_test_data = norm(test_dataset)
 
-#model=tf.keras.models.load_model('1.h5')
-model=joblib.load('11%.joblib')
-print(model.predict(b))
+clf = LinearRegression(n_jobs=-1)
+clf.fit(normed_train_data,train_labels)
+joblib.dump(clf,'11%.joblib')
 
+preds=clf.predict(normed_test_data)
+print(preds)
+
+acc=clf.score(normed_test_data,test_labels)
+print(acc)
 
