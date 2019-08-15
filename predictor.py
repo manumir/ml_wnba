@@ -7,9 +7,9 @@ c2_avg=['PTS', 'FGM', 'FGA','FG%', '3PM', '3PA', '3P%',
         'FTM', 'FTA', 'FT%', 'OREB', 'DREB', 'REB',
         'AST', 'TOV', 'STL', 'BLK', 'PF', '+/-','winrate 30','winrate 6']
 
-home=data.loc[data['Team']=='SEA'][:1]
+home=data.loc[data['Team']=='PHO'][:1]
 
-away=data.loc[data['Team']=='LAS'][:1]
+away=data.loc[data['Team']=='CON'][:1]
 
 home=home.reset_index(drop=True)
 away=away.reset_index(drop=True)

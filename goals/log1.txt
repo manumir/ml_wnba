@@ -1,0 +1,152 @@
+placard:
+4 out of 9
+44.444444444%
+
+model 70:
+5 out of 9
+55.555555555555%
+
+placard:
+5 out of 6
+83.33333333333334%
+
+model 70:
+5 out of 6
+83.33333333333334%
+
+placard:
+6 out of 7
+85.71428571428571%
+
+model 70:
+4 out of 7
+57.14285714285714%
+
+placard:
+4 out of 8
+50.0%
+
+model 70:
+6 out of 8
+75.0%
+
+placard:
+5 out of 8
+62.5%
+
+model 70:
+5 out of 8
+62.5%
+
+placard:
+2 out of 4
+50.0%
+
+model 70:
+2 out of 4
+50.0%
+
+placard:
+7 out of 10
+50.0%
+
+model 70:
+4 out of 10
+40.0%
+
+placard:
+5 out of 5
+100.0%
+
+model 70:
+5 out of 5
+100.0%
+
+placard:
+7 out of 8
+87.5%
+
+model 70:
+8 out of 8
+100.0%
+
+placard:
+3 out of 6
+50.0%
+
+model 70:
+5 out of 6
+83.33333333333334%
+
+placard:
+8 out of 9
+88.88888888888889%
+
+model 70:
+6 out of 9
+66.66666666666666%
+
+placard:
+2 out of 7
+28.57142857142857%
+
+model 70:
+2 out of 7
+28.57142857142857%
+
+placard:
+8 out of 9
+88.88888888888889%
+
+model 70:
+7 out of 9
+77.77777777777779%
+
+placard:
+4 out of 4
+100.0%
+
+model 70:
+4 out of 4
+100.0%
+
+placard:
+8 out of 12
+75.0%
+
+model 70:
+6 out of 12
+50.0%
+
+placard:
+3 out of 3
+100.0%
+
+model 70:
+1 out of 3
+33.33333333333333%
+
+placard:
+7 out of 13
+53.84615384615385%
+
+model 70:
+8 out of 13
+61.53846153846154%
+
+placard:
+1 out of 2
+50.0%
+
+model 70:
+1 out of 2
+50.0%
+
+placard:
+7 out of 14
+50.0%
+
+model 70:
+7 out of 14
+50.0%
+

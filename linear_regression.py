@@ -1,4 +1,5 @@
 import pandas as pd
+import functions as f
 from sklearn.linear_model import LinearRegression
 import joblib
 
@@ -24,12 +25,11 @@ normed_train_data = norm(train_dataset)
 normed_test_data = norm(test_dataset)
 
 clf = LinearRegression(n_jobs=-1)
-clf.fit(normed_train_data,train_labels)
-joblib.dump(clf,'11%.joblib')
+clf.fit(train_dataset,train_labels)
+#joblib.dump(clf,'11%.joblib')
 
-preds=clf.predict(normed_test_data)
-print(preds)
-
-acc=clf.score(normed_test_data,test_labels)
-print(acc)
+acc=clf.score(test_dataset,test_labels)
+preds=clf.predict(test_dataset)
+print(f.acc(preds,test_labels))
+#print(acc)
 

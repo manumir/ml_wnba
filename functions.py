@@ -109,3 +109,12 @@ def datecomp(date1,date2):
             if date1[3:5]==date2[3:5]:
                 return 0
 
+def acc(true_y,pred_y):
+  true_y=list(true_y)
+  pred_y=list(pred_y)
+  count=0 
+  for x in range(len(true_y)):
+    if round(pred_y[x])==round(true_y[x]):
+      count=count+1
+  return count/len(true_y)
+
