@@ -3,5 +3,6 @@ import functions as f
 
 file=pd.read_csv('data.csv')
 
-print(f.append2for1(file))
+b=f.append2for1(file)
 
+print(len(b))

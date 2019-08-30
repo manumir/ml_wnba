@@ -53,24 +53,17 @@ def location(df):
     return locations
 
 def append2for1(data):
-  ix=0
-  b=[]
-  ixs=list(range(len(data)))
-  for ix in ixs:
-    #print(ix)
-    name=data.at[ix,'Match Up'][-3:]
-    date=data.at[ix,'Game Date']
-    a=data.loc[data['Game Date']==date]
-    a=a.loc[data['Team']==name]
-    try:
-      b.append(a.index[0])
-      print(a.index[0])
-      ixs.remove(a.index[0])
-    except:
-      print(a.index,a)
-    ix=ix+1
-  #b=b.join(a,lsuffix='_left',rsuffix='_right')
-  return b
+    b=[]
+    for ix, row in data.iterrows():
+        name=data.at[ix,'Match Up'][-3:]
+        date=data.at[ix,'Game Date']
+        a=data.loc[data['Game Date']==date]
+        a=a.loc[data['Team']==name]
+        try:
+            b.append(a.index[0])
+        except:
+            b.append(np.nan)
+    return b
   
 #  return name
 
