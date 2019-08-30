@@ -3,6 +3,7 @@ import pandas as pd
 import functions as f
 
 data=pd.read_csv('raw.csv')
+#data=data.dropna()
 data.pop('Unnamed: 24')
 data=data.astype('object')
 #data=data[:1000]

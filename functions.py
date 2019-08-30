@@ -53,27 +53,26 @@ def location(df):
     return locations
 
 def append2for1(data):
-  a=data.loc[[0]]
   ix=0
-  while ix < len(data):
-    print(ix)
-    if ix != 0:
-      a=a.append(data.loc[[ix]])
-    ix+=2
-
-  b=data.loc[[1]]
-  ix=1
-  while ix < len(data):
-    print(ix)
-    if ix != 1:
-      b=b.append(data.loc[[ix]])
-    ix+=2
-
-  a=a.reset_index(drop=True)
-  b=b.reset_index(drop=True)
-  b=b.join(a,lsuffix='_left',rsuffix='_right')
-  
+  b=[]
+  ixs=list(range(len(data)))
+  for ix in ixs:
+    #print(ix)
+    name=data.at[ix,'Match Up'][-3:]
+    date=data.at[ix,'Game Date']
+    a=data.loc[data['Game Date']==date]
+    a=a.loc[data['Team']==name]
+    try:
+      b.append(a.index[0])
+      print(a.index[0])
+      ixs.remove(a.index[0])
+    except:
+      print(a.index,a)
+    ix=ix+1
+  #b=b.join(a,lsuffix='_left',rsuffix='_right')
   return b
+  
+#  return name
 
 #create a function to determine if a date is sooner than another date
 def datecomp(date1,date2):

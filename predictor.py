@@ -7,9 +7,8 @@ c2_avg=['PTS', 'FGM', 'FGA','FG%', '3PM', '3PA', '3P%',
         'FTM', 'FTA', 'FT%', 'OREB', 'DREB', 'REB',
         'AST', 'TOV', 'STL', 'BLK', 'PF', '+/-','winrate 30','winrate 6']
 
-home=data.loc[data['Team']=='PHO'][:1]
-
-away=data.loc[data['Team']=='CON'][:1]
+home=data.loc[data['Team']=='LVA'][:1]
+away=data.loc[data['Team']=='PHO'][:1]
 
 home=home.reset_index(drop=True)
 away=away.reset_index(drop=True)
@@ -41,10 +40,11 @@ test_labels = test_dataset.pop('Result')
 
 def norm(x):
   return (x - train_stats['mean']) / train_stats['std']
-b= norm(b)
+normed_b= norm(b)
 
 #model=tf.keras.models.load_model('1.h5')
-model=joblib.load('11%.joblib')
+#model=joblib.load('11%.joblib')
+model=joblib.load('uptodate_linear_regression.joblib')
 print(model.predict(b))
 
 

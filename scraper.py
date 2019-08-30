@@ -13,7 +13,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 
-NUMBER_OF_PAGES=9
+NUMBER_OF_PAGES=5
 year=str(sys.argv[1])
 
 def get_stats():
@@ -26,7 +26,7 @@ def get_stats():
 
     file=open('data1.txt','w')
     i=0
-    for i in range(NUMBER_OF_PAGES+1):
+    for i in range(NUMBER_OF_PAGES):
         WebDriverWait(driver,10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "div.nba-stat-table__overflow")))
 
         html=bs4(driver.page_source,'html.parser')
