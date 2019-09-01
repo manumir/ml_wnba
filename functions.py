@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 
 # create a data frame of games before a certain date
 def get_past_games(df,data1,team,amount):
@@ -44,17 +45,25 @@ def result(df):
     return results
 
 def location(df):
-    locations=[]
-    for value in df['Match Up_right'].values:
-        if value[4]=='v':
-            locations.append(0)
-        else:
-            locations.append(1)
-    return locations
+  locations=[]
+  print(df['Match Up_right'])
+  for value in df['Match Up_right'].values:
+    if value[4]=='v':
+      locations.append(0)
+    else:
+      locations.append(1)
+  return locations
 
 def append2for1(data):
-  data=data.reset_index()
+  data=data.reset_index(drop=True)
   b=[]
+  left=pd.DataFrame(columns=['Team','Match Up','Game Date','W/L','MIN','PTS','FGM','FGA','FG%','3PM',
+                          '3PA','3P%','FTM','FTA','FT%','OREB','DREB','REB','AST','TOV','STL','BLK',
+                          'PF','+/-','winrate 30','winrate 6'])
+  right=pd.DataFrame(columns=['Team','Match Up','Game Date','W/L','MIN','PTS','FGM','FGA','FG%','3PM',
+                          '3PA','3P%','FTM','FTA','FT%','OREB','DREB','REB','AST','TOV','STL','BLK',
+                          'PF','+/-','winrate 30','winrate 6'])
+
   it=list(range(data.shape[0]))
   for ix in it:
     name=data.at[ix,'Match Up'][-3:]
@@ -62,11 +71,9 @@ def append2for1(data):
     a=data.loc[data['Game Date']==date]
     a=a.loc[data['Team']==name]
     it.remove(ix)
-    try:
-      b.append(a.index[0])
-    except:
-      continue
-  return b
+    left=left.append(data.loc[ix])
+    right=right.append(a)
+  return left,right
   
 #create a function to determine if a date is sooner than another date
 def datecomp(date1,date2):

@@ -2,14 +2,16 @@ import pandas as pd
 import functions as f
 
 file=pd.read_csv('data.csv')
-file=file.reset_index()
+file=file.reset_index(drop=True)
 
-b=f.append2for1(file)
-a=list(range(len(file)))
+left,right=f.append2for1(file)
 
-for i in a:
-  if i in b:
-    a.remove(i)
+left=left.reset_index(drop=True)
+right=right.reset_index(drop=True)
 
-print(len(a),len(b))
+a=left.join(right,rsuffix='_right')
+a.to_csv('a.csv')
+
+print(a['Match Up'])
+print(a['Match Up_right'])
 

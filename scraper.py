@@ -13,7 +13,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 
-NUMBER_OF_PAGES=5
 year=str(sys.argv[1])
 
 def get_stats():
@@ -25,6 +24,9 @@ def get_stats():
     driver.get('https://stats.wnba.com/teams/boxscores-traditional/?Season='+year+'&SeasonType=Regular%20Season')
 
     file=open('data1.txt','w')
+    path_2_num_pages=driver.find_element_by_class_name("stats-table-pagination__info")
+    NUMBER_OF_PAGES=int(path_2_num_pages.text[-2:])
+    print(NUMBER_OF_PAGES)
     i=0
     for i in range(NUMBER_OF_PAGES):
         WebDriverWait(driver,10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "div.nba-stat-table__overflow")))
