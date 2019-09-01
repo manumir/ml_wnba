@@ -73,7 +73,10 @@ def append2for1(data):
     it.remove(ix)
     left=left.append(data.loc[ix])
     right=right.append(a)
-  return left,right
+    left=left.reset_index(drop=True)
+    right=right.reset_index(drop=True)
+    a=left.join(right,rsuffix='_right')
+  return a
   
 #create a function to determine if a date is sooner than another date
 def datecomp(date1,date2):
