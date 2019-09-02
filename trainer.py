@@ -10,9 +10,9 @@ import functions as f
 a=pd.read_csv('train.csv')
 a=a.dropna()
 
-a=a.drop(['Team_left','Match Up_left','Game Date_left','Team_right',
-          'Match Up_right','Game Date_right','MIN_left','MIN_right',
-          'W/L_left','W/L_right'],1)
+a=a.drop(['Team','Match Up','Game Date','Team_right',
+          'Match Up_right','Game Date_right','MIN','MIN_right',
+          'W/L','W/L_right'],1)
 
 print(a.corr()['Result'])
 
@@ -37,11 +37,10 @@ print(len(train_dataset.keys()))
 def build_model():
     model = keras.Sequential([
     layers.Dense(43, input_shape=[len(train_dataset.keys())],activation='sigmoid'),
-    layers.Dense(1000,activation='sigmoid'),
-    layers.Dense(1000,activation='sigmoid'),
+    layers.Dense(43,activation='sigmoid'),
     layers.Dense(1,activation='sigmoid'),
   ])
-    model.compile(optimizer='adam',
+    model.compile(optimizer='rmsprop',
               loss='binary_crossentropy',
               metrics=['accuracy'])
     return model

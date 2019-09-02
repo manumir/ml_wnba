@@ -27,7 +27,6 @@ for ix in range(len(data)):
 data.to_csv('data.csv',index=False)
 
 b=f.append2for1(data)
-b=b.dropna()
 b['Result']=f.result(b)
 b['Location']=f.location(b)
 

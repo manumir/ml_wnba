@@ -4,27 +4,20 @@ from sklearn.ensemble import RandomForestClassifier
 
 data=pd.read_csv('train.csv')
 a=data.dropna()
-a=a.drop(['Team_left','Match Up_left','Game Date_left','Team_right',
-           'Match Up_right','Game Date_right','MIN_left','MIN_right',
-           'W/L_left','W/L_right'],1)
+a=a.drop(['Team','Match Up','Game Date','Team_right',
+           'Match Up_right','Game Date_right','MIN','MIN_right',
+           'W/L','W/L_right'],1)
 
-train_dataset = a.sample(frac=0.9,random_state=2)
+train_dataset = a.sample(frac=0.82,random_state=13)
 test_dataset = a.drop(train_dataset.index)
-
-train_stats =train_dataset.describe()
-train_stats.pop('Result')
-train_stats = train_stats.transpose()
 
 train_labels = train_dataset.pop('Result')
 test_labels = test_dataset.pop('Result')
 
-def norm(x):
-  return (x - train_stats['mean']) / train_stats['std']
-#normed_train_data = norm(train_dataset)
-#normed_test_data = norm(test_dataset)
-
-clf = RandomForestClassifier(n_estimators=100, random_state=0)
+clf = RandomForestClassifier(n_estimators=150, random_state=0)
 clf.fit(train_dataset,train_labels)
+
 preds=clf.predict(test_dataset)
+
 print(f.acc(preds,test_labels))
 
