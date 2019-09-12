@@ -10,7 +10,7 @@ a=a.drop(['Team','Match Up','Game Date','Team_right',
            'Match Up_right','Game Date_right','MIN','MIN_right',
            'W/L','W/L_right'],1)
 
-train_dataset = a.sample(frac=0.9,random_state=16)
+train_dataset = a.sample(frac=0.85,random_state=16)
 test_dataset = a.drop(train_dataset.index)
 
 train_labels = train_dataset.pop('Result')
@@ -22,7 +22,7 @@ train_dataset=preprocessing.normalize(train_dataset)
 test_dataset=preprocessing.normalize(test_dataset)
 
 clf.fit(train_dataset,train_labels)
-joblib.dump(clf,'logistic.joblib')
+joblib.dump(clf,'Logistic.joblib')
 
 acc=clf.score(test_dataset,test_labels)
 preds=clf.predict(test_dataset)

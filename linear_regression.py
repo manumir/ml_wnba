@@ -22,7 +22,7 @@ clf = LinearRegression(n_jobs=-1)
 #test_dataset=preprocessing.normalize(test_dataset)
 
 clf.fit(train_dataset,train_labels)
-joblib.dump(clf,'linear_regression.joblib')
+joblib.dump(clf,'Linear_regression.joblib')
 
 acc=clf.score(test_dataset,test_labels)
 preds=clf.predict(test_dataset)
