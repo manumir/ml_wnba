@@ -1,6 +1,6 @@
 import pandas as pd
 import functions as f
-from sklearn.linear_model import LinearRegression
+from sklearn.neural_network import MLPClassifier
 from sklearn import preprocessing
 import joblib
 
@@ -16,19 +16,20 @@ test_dataset = a.drop(train_dataset.index)
 train_labels = train_dataset.pop('Result')
 test_labels = test_dataset.pop('Result')
 
-clf = LinearRegression(n_jobs=-1)
+clf = MLPClassifier(activation='logistic',random_state=1,max_iter=500,batch_size=2)
 
-#train_dataset=preprocessing.normalize(train_dataset)
-#test_dataset=preprocessing.normalize(test_dataset)
+train_dataset=preprocessing.normalize(train_dataset)
+test_dataset=preprocessing.normalize(test_dataset)
 
 clf.fit(train_dataset,train_labels)
-joblib.dump(clf,'linear_regression.joblib')
+joblib.dump(clf,'svm2.0.joblib')
 
 acc=clf.score(test_dataset,test_labels)
 preds=clf.predict(test_dataset)
 print(f.acc(preds,test_labels))
 
-ones,zeros=0,0
+ones=0
+zeros=0
 for pred in preds:
   if round(pred)==1:
     ones+=1

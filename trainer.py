@@ -37,7 +37,6 @@ print(len(train_dataset.keys()))
 def build_model():
     model = keras.Sequential([
     layers.Dense(43, input_shape=[len(train_dataset.keys())],activation='sigmoid'),
-    layers.Dense(43,activation='sigmoid'),
     layers.Dense(1,activation='sigmoid'),
   ])
     model.compile(optimizer='rmsprop',
@@ -56,8 +55,7 @@ checkpoint_dir = os.path.dirname(checkpoint_path)
 # Create checkpoint callback
 cp_callback = tf.keras.callbacks.ModelCheckpoint(checkpoint_path, save_weights_only=True)
 
-history = model.fit(normed_train_data, train_labels,validation_split=0.2, epochs=500, callbacks=[early_stop])#,cp_callback])
-#history = model.fit(train_dataset, train_labels,validation_split=0.2, epochs=500, callbacks=[early_stop])#,cp_callback])
+history = model.fit(normed_train_data, train_labels,validation_split=0.2, epochs=500, callbacks=[early_stop], batch_size=1)#,cp_callback])
 
 print(model.evaluate(normed_test_data,test_labels)[1])
 test_predictions = model.predict(normed_test_data)
