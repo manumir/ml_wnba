@@ -10,7 +10,16 @@ a=a.drop(['Team','Match Up','Game Date','Team_right',
            'Match Up_right','Game Date_right','MIN','MIN_right',
            'W/L','W/L_right'],1)
 
-train_dataset = a.sample(frac=0.9,random_state=10)
+corr=a.corr()['Result']
+del2=[]
+for x in corr.index:
+  if abs(corr[x]) < 0.1:
+    del2.append(x)
+
+a=a.drop(del2,1)
+
+print(a.columns)
+train_dataset = a.sample(frac=0.9,random_state=24)
 test_dataset = a.drop(train_dataset.index)
 
 train_labels = train_dataset.pop('Result')
